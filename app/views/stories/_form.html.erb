@@ -1,0 +1,16 @@
+<%= form_for @story, url: user_stories_path(current_user.id), method: :post do |form| %>
+  <div class="field">
+    <%= form.label :caption %>
+    <%= form.text_area :caption %>
+  </div>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, direct_upload: true%>
+  </div>
+  <div class="form-group">
+    <%= form.text_field :user_id, value: current_user.id, class:'d-none'%>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

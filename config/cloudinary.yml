@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "dqpxs3lip"
+  api_key: "567149728384649"
+  api_secret: "jOaRRL4CVdXNkCY5Z9TrZqcV9Vw"
+  secure: true
+
+production:
+  cloud_name: "dqpxs3lip"
+  api_key: "567149728384649"
+  api_secret: "jOaRRL4CVdXNkCY5Z9TrZqcV9Vw"
+  secure: true

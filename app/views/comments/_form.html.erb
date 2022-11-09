@@ -1,0 +1,8 @@
+<%= form_for @comment, url: user_post_comments_path(current_user.id, params[:post_id]) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :content , placeholder: 'comment'%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

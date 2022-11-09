@@ -1,0 +1,30 @@
+<h1>All Users</h1>
+<div class="posts">
+  <% @users.each do |user| %>
+    <% if user_signed_in? %>
+      <% if user.id == current_user.id %>
+        <%next%>
+      <%else%>
+        <section class="post">
+          <div class="user">
+            <div class="avatar">
+              <% if user.avatar.attached? %>
+                <%= link_to user_path(user.id) do %>
+                  <%= image_tag user.avatar %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="description">
+              <%= user.name %>
+              <strong>Followers &nbsp : &nbsp<%= user.followers.count%></strong>
+              <%= link_to 'Go to profile', user_path(user.id)%>
+              <br>
+              <br>
+              <%= follow_button(user) %>
+            </div>
+          </div>
+        </section>
+      <%end%>
+    <%end%>
+  <%end%>
+</div>

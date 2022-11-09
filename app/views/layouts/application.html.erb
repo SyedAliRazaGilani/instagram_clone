@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <% @search %>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-info">
+        <%= msg %>
+      </div>
+    <% end %>
+    <!--Navigation Bar-->
+    <%= render "shared/navbar"%>
+    <!--Main content-->
+    <main class="container mh-500">
+      <%= yield %>
+    </main>
+    <!--Footer-->
+    <%= render "shared/footer"%>
+  </body>
+</html>

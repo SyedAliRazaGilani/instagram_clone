@@ -1,0 +1,9 @@
+<%= form_for(story, url: user_story_path(story), html: { method: :put }) do |f| %>
+  <div>
+    <%= f.label :caption %>
+    <%= f.text_field :caption%>
+  </div>
+  <%= f.submit "Save"%>
+</div>
+</div>
+<% end %>

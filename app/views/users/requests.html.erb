@@ -1,0 +1,16 @@
+<h1>Requests</h1>
+<div class="posts">
+  <% @followers.each do |f| %>
+    <section class="post">
+      <% unless current_user.followers.first.friend %>
+        <div class="user">
+          <div class="description">
+            <%= User.find(f.follower_id).name%>
+            <%= link_to 'Cancel', user_follower_path(current_user.id, f.follower_id), method: :delete, data: { confirm: 'Are you sure?' }  %>
+            <%= link_to 'Accept', user_followers_path(f.follower_id), method: :post, data: { confirm: 'Are you sure? You want to accept.' }  %>
+          </div>
+        </div>
+      <%end%>
+    </section>
+  <%end%>
+</div>

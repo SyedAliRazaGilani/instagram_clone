@@ -1,0 +1,16 @@
+<h1>Search Results</h1>
+<div class="posts">
+  <% @users.each do |user| %>
+    <%if user != nil %>
+      <section class="post">
+        <div class="user">
+          <div class="description">
+            <%= user.name%>
+            <%= link_to 'GO TO PROFILE', user_path(user.id)%>
+          </div>
+        </div>
+      </section>
+    <%end%>
+  <%end%>
+</div>
+<%= link_to 'Back to Your Profile',  user_path(current_user.id)%>

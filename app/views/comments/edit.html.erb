@@ -1,0 +1,4 @@
+<h1>Editing Comment</h1>
+<%= render 'edit', comment: @comment %>
+<%= link_to 'Show', user_post_comment_path(params[:user_id], params[:post_id], @comment.id) %> |
+<%= link_to 'Back', current_user %>

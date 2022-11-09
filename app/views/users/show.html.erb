@@ -1,0 +1,123 @@
+<!--Public User-->
+<% if @user.id != current_user.id%>
+  <div class="user-profile">
+    <div class="profile row">
+      <div class="col-md-4 mt-4 mb-4">
+        <%= avatar(@user) %>
+      </div>
+      <div class="col-md-8 basic-info">
+        <h2 class="username"><%=@user.username%></h2>
+        <ul class="posts">
+          <li><span><%=@user.posts.count%></span> posts</li>
+          <li><span><%=@user.followers.count%></span> followers</li>
+          <br>
+        </ul>
+        <h2 class="name"><%=@user.name%></h2>
+        <%= follower_helper %>
+      </div>
+    </div>
+  </div>
+  <div class="user-tabs">
+    <a class="tab active" href="">
+      <i class="fa fa-th"></i>
+      POSTS
+    </a>
+    <a class="tab" href="">
+      <i class="fa fa-tv"></i>
+      IGTV
+    </a>
+    <a class="tab" href="">
+      <i class="fa fa-bookmark"></i>
+      SAVED
+    </a>
+    <a class="tab" href="">
+      <i class="fa fa-tag"></i>
+      TAGGED
+    </a>
+  </div>
+  <%if post_access || @user.public %>
+    <div class="container">
+      <div class="d-flex flex-row justify-content-start flex-wrap">
+        <% @user.posts.each do |post|%>
+          <% post.images.each do |image|%>
+            <div style="border:1px solid black;">
+              <a href="<%=user_post_path(@user.id, post.id) %>">
+                <%= image_tag (image) %>
+              </a>
+            </div>
+          <%end%>
+        <% end %>
+      </div>
+    </div>
+  <%elsif @user.public == false || post_access == false %>
+    <div class="d-flex flex-row justify-content-center mt-4">
+      <h1 >USER PROFILE IS PRIVATE</h1>
+    </div>
+  <%end%>
+<% else %>
+  <div class="user-profile">
+    <div class="profile row">
+      <div class="col-md-4 mt-4 mb-4">
+       <%= avatar(@user) %>
+      </div>
+      <div class="col-md-8 basic-info">
+        <div class="user-wrapper">
+          <h2 class="username"><%=@user.username%></h2>
+          <a href="<%=edit_user_path(@user.id)%>" class="edit-profile">
+            <button>Edit Profile</button>
+          </a>
+          <a href="<%=new_user_post_path(current_user.id)%>" class="edit-profile" >
+            <button>Add Posts</button>
+          </a>
+          <div class="edit-profile" >
+            <%=link_to users_path do%>
+              <button>Show All Users</button>
+            <%end%>
+          </div>
+          <div class="edit-profile" >
+            <%=link_to requests_users_path,  method: :get do%>
+              <button>Requests</button>
+            <%end%>
+          </div>
+        </div>
+        <ul class="posts">
+          <li><span><%=@user.posts.count%></span> posts</li>
+          <li><span><%=@user.followers.count%></span> followers</li>
+          <br>
+        </ul>
+        <h2 class="name"><%=@user.name%></h2>
+      </div>
+    </div>
+  </div>
+  <div class="user-tabs">
+    <a class="tab active" href="">
+      <i class="fa fa-th"></i>
+      POSTS
+    </a>
+    <a class="tab" href="">
+      <i class="fa fa-tv"></i>
+      IGTV
+    </a>
+    <a class="tab" href="">
+      <i class="fa fa-bookmark"></i>
+      SAVED
+    </a>
+    <a class="tab" href="">
+      <i class="fa fa-tag"></i>
+      TAGGED
+    </a>
+  </div>
+  <div class="container">
+    <div class="d-flex flex-row justify-content-start flex-wrap">
+      <% @user.posts.each do |post|%>
+        <% post.images.each do |image|%>
+          <div style="border:1px solid black;">
+            <a href="<%=post_path(post.id) %>">
+              <%= image_tag (image) %>
+            </a>
+          </div>
+        <%end%>
+      <% end %>
+    </div>
+  </div>
+<% end %>

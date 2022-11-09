@@ -1,0 +1,33 @@
+<div class='post'>
+  <h1>Post</h1>
+  <p>
+    <strong>Caption:</strong>
+    <%= @post.caption %>
+    <% @post.images.each do |image|%>
+      <%= image_tag(image)%>
+    <%end%>
+    <table>
+      <tbody>
+        <td><%= link_to 'Edit', edit_user_post_path(current_user.id, @post) %></td>
+        <td><%= link_to 'Destroy', user_post_path(current_user.id, @post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tbody>
+    </table>
+  </p>
+  <h2>Likes</h2>
+  <%= test(@post.id) %>
+  <h2>Comments</h2>
+  <table>
+    <tbody>
+      <% @post.comments.each do |comment| %>
+        <tr>
+          <td><%= comment.content %></td>
+          <td><%= link_to 'Edit', edit_user_post_comment_path(comment.user_id, comment.post_id, comment.id)  %></td>
+          <td><%= link_to 'Destroy', user_post_comment_path(comment.user_id, comment.post_id, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'Add Comment', new_user_post_comment_path(current_user.id, @post.id) %>
+  <%= link_to 'Back', current_user %>
+</div>
